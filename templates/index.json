@@ -1,27 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "SMALL-BATCH \u2022 SMOKED \u2022 PROTEIN-PACKED",
-        "heading_1": "FUEL THE",
-        "heading_2": "GRIND.",
+        "eyebrow": "SMALL-BATCH • SMOKED • PROTEIN-PACKED",
+        "heading_1": "dominate",
+        "heading_2": "hunger",
         "subheading": "Hand-cut beef, real spices, slow-smoked in small batches. Four bold flavors built for the hungry.",
         "button_label": "Shop the flavors",
+        "button_url": "",
         "button_label_2": "Our story",
+        "button_url_2": "",
         "show_ticker": true,
-        "ticker_text": "NO PRESERVATIVES \u00b7 HIGH PROTEIN \u00b7 GLUTEN FREE \u00b7 SLOW SMOKED \u00b7 MADE IN THE USA \u00b7"
+        "ticker_text": "NO PRESERVATIVES · HIGH PROTEIN · GLUTEN FREE · SLOW SMOKED · MADE IN THE USA ·"
       }
     },
     "flavors": {
       "type": "flavor-showcase",
       "blocks": {
-        "f1": { "type": "flavor", "settings": { "name": "Original", "heat": "MILD", "description": "The classic. Smoky, savory, perfectly chewy." } },
-        "f2": { "type": "flavor", "settings": { "name": "Teriyaki", "heat": "SWEET", "description": "Sweet, sticky, soy-glazed and addictive." } },
-        "f3": { "type": "flavor", "settings": { "name": "Black Pepper", "heat": "BOLD", "description": "Cracked pepper with a peppery bite all over." } },
-        "f4": { "type": "flavor", "settings": { "name": "Habanero Heat", "heat": "HOT \ud83d\udd25", "description": "For the brave. Real habanero, real burn." } }
+        "f1": {
+          "type": "flavor",
+          "settings": {
+            "name": "Original",
+            "heat": "MILD",
+            "description": "The classic. Smoky, savory, perfectly chewy.",
+            "link": ""
+          }
+        },
+        "f2": {
+          "type": "flavor",
+          "settings": {
+            "name": "Teriyaki",
+            "heat": "SWEET",
+            "description": "Sweet, sticky, soy-glazed and addictive.",
+            "link": ""
+          }
+        },
+        "f3": {
+          "type": "flavor",
+          "settings": {
+            "name": "Black Pepper",
+            "heat": "BOLD",
+            "description": "Cracked pepper with a peppery bite all over.",
+            "link": ""
+          }
+        },
+        "f4": {
+          "type": "flavor",
+          "settings": {
+            "name": "Habanero Heat",
+            "heat": "HOT 🔥",
+            "description": "For the brave. Real habanero, real burn.",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3", "f4"],
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
       "settings": {
         "eyebrow": "FOUR WAYS TO GET BOLD",
         "heading": "Pick your flavor",
@@ -31,11 +79,37 @@
     "value_props": {
       "type": "value-props",
       "blocks": {
-        "v1": { "type": "prop", "settings": { "icon": "protein", "title": "High Protein", "text": "11g of protein per serving to fuel the grind." } },
-        "v2": { "type": "prop", "settings": { "icon": "smoke", "title": "Slow Smoked", "text": "Real hardwood smoke, never liquid shortcuts." } },
-        "v3": { "type": "prop", "settings": { "icon": "leaf", "title": "Clean Ingredients", "text": "No preservatives, no nitrates, no nonsense." } }
+        "v1": {
+          "type": "prop",
+          "settings": {
+            "icon": "protein",
+            "title": "High Protein",
+            "text": "11g of protein per serving to fuel the grind."
+          }
+        },
+        "v2": {
+          "type": "prop",
+          "settings": {
+            "icon": "smoke",
+            "title": "Slow Smoked",
+            "text": "Real hardwood smoke, never liquid shortcuts."
+          }
+        },
+        "v3": {
+          "type": "prop",
+          "settings": {
+            "icon": "leaf",
+            "title": "Clean Ingredients",
+            "text": "No preservatives, no nitrates, no nonsense."
+          }
+        }
       },
-      "block_order": ["v1", "v2", "v3"]
+      "block_order": [
+        "v1",
+        "v2",
+        "v3"
+      ],
+      "settings": {}
     },
     "featured": {
       "type": "featured-products",
@@ -43,6 +117,7 @@
         "eyebrow": "FAN FAVORITES",
         "heading": "Best sellers",
         "subheading": "The bags that fly off the shelf.",
+        "collection": "",
         "products_limit": 4,
         "show_view_all": true
       }
@@ -56,5 +131,11 @@
       }
     }
   },
-  "order": ["hero", "flavors", "value_props", "featured", "newsletter"]
+  "order": [
+    "hero",
+    "flavors",
+    "value_props",
+    "featured",
+    "newsletter"
+  ]
 }
