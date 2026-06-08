@@ -1,0 +1,54 @@
+{
+  "general": {
+    "search": {
+      "search": "Search",
+      "placeholder": "Search the shop",
+      "no_results": "No results for \u201c{{ terms }}\u201d. Try another flavor.",
+      "results_count": "{{ count }} results for \u201c{{ terms }}\u201d"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you\u2019re chewing on doesn\u2019t exist.",
+      "link": "Back to the shop"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "newsletter": {
+      "label": "Email",
+      "placeholder": "you@email.com",
+      "button": "Join the pack",
+      "success": "Welcome to the pack."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "price": "Price",
+      "from": "From",
+      "on_sale": "Sale",
+      "description": "Description"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "empty": "Your cart is empty.",
+      "continue": "Keep shopping",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "remove": "Remove",
+      "taxes_note": "Taxes and shipping calculated at checkout."
+    }
+  },
+  "collections": {
+    "general": {
+      "all": "All flavors",
+      "empty": "No products found."
+    }
+  }
+}

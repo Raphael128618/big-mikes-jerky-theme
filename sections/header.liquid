@@ -1,0 +1,54 @@
+{%- if settings.show_announcement and settings.announcement_text != blank -%}
+  <div class="announcement">{{ settings.announcement_text }}</div>
+{%- endif -%}
+
+<header class="header">
+  <div class="page-width header__inner">
+    <button class="nav-toggle" data-nav-toggle aria-label="Menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+
+    <a href="{{ routes.root_url }}" class="header__logo">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" width="150">
+      {%- else -%}
+        {{ section.settings.logo_text_1 }}<span class="accent">{{ section.settings.logo_text_2 }}</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="nav" data-nav aria-label="Primary">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}" class="nav__link">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="header__actions">
+      <a href="{{ routes.search_url }}" class="header__icon" aria-label="Search">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </a>
+      <a href="{{ routes.cart_url }}" class="header__icon" aria-label="Cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <span class="cart-count" data-cart-count{% if cart.item_count == 0 %} style="display:none"{% endif %}>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo image" },
+    { "type": "header", "content": "Text logo (used if no image)" },
+    { "type": "text", "id": "logo_text_1", "label": "Logo text", "default": "BIG MIKE'S" },
+    { "type": "text", "id": "logo_text_2", "label": "Logo accent text", "default": " JERKY" },
+    { "type": "link_list", "id": "menu", "label": "Navigation menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

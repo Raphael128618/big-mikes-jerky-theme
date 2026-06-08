@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="{{ settings.color_background }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {%- comment -%} Brand fonts from theme settings {%- endcomment -%}
+    {% assign heading_font = settings.font_heading %}
+    {% assign body_font = settings.font_body %}
+    {{ heading_font | font_face: font_display: 'swap' }}
+    {{ body_font | font_face: font_display: 'swap' }}
+
+    {%- comment -%} CSS custom properties driven by theme settings {%- endcomment -%}
+    {%- style -%}
+      :root {
+        --color-bg: {{ settings.color_background }};
+        --color-surface: {{ settings.color_surface }};
+        --color-text: {{ settings.color_text }};
+        --color-muted: {{ settings.color_text_muted }};
+        --color-accent: {{ settings.color_accent }};
+        --color-accent-hover: {{ settings.color_accent_hover }};
+        --page-width: {{ settings.page_width }}px;
+        --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+        --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+        --font-heading-weight: {{ heading_font.weight }};
+        --font-body-weight: {{ body_font.weight }};
+      }
+    {%- endstyle -%}
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name }}">
+    <a class="skip-link" href="#MainContent">Skip to content</a>
+
+    {% section 'header' %}
+
+    <main id="MainContent" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+
+    {{ 'global.js' | asset_url | script_tag }}
+  </body>
+</html>

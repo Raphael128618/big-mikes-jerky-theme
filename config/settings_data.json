@@ -1,0 +1,25 @@
+{
+  "current": {
+    "color_background": "#0a0a0a",
+    "color_surface": "#161616",
+    "color_text": "#ffffff",
+    "color_text_muted": "#a3a3a3",
+    "color_accent": "#B11F24",
+    "color_accent_hover": "#d62a30",
+    "font_heading": "archivo_n7",
+    "font_body": "assistant_n4",
+    "page_width": 1280,
+    "show_announcement": true,
+    "announcement_text": "FREE SHIPPING ON ORDERS OVER $40 \u2014 SMOKED, NOT JOKED"
+  },
+  "presets": {
+    "Big Mike's Jerky": {
+      "color_background": "#0a0a0a",
+      "color_surface": "#161616",
+      "color_text": "#ffffff",
+      "color_text_muted": "#a3a3a3",
+      "color_accent": "#B11F24",
+      "color_accent_hover": "#d62a30"
+    }
+  }
+}

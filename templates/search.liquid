@@ -1,0 +1,35 @@
+<section class="section">
+  <div class="page-width">
+    <div class="section-head">
+      <span class="eyebrow">{{ 'general.search.search' | t }}</span>
+      <h1>{{ 'general.search.search' | t }}</h1>
+    </div>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="newsletter__form" style="max-width:560px;margin:0 0 48px">
+      <input type="search" name="q" value="{{ search.terms | escape }}"
+             placeholder="{{ 'general.search.placeholder' | t }}"
+             style="background:var(--color-surface);border-color:rgba(255,255,255,0.18);color:var(--color-text)">
+      <button type="submit" class="btn btn--primary">{{ 'general.search.search' | t }}</button>
+    </form>
+
+    {%- if search.performed -%}
+      {%- if search.results.size > 0 -%}
+        <p class="text-muted" style="margin-bottom:32px">{{ 'general.search.results_count' | t: count: search.results.size, terms: search.terms }}</p>
+        <div class="product-grid">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product: item %}
+            {%- else -%}
+              <article class="card"><div class="card__body">
+                <h3 class="card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                <p class="text-muted">{{ item.content | strip_html | truncatewords: 20 }}</p>
+              </div></article>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="empty-state">{{ 'general.search.no_results' | t: terms: search.terms }}</div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>

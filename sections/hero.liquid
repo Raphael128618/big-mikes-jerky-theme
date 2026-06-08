@@ -1,0 +1,59 @@
+<section class="hero">
+  <div class="hero__media">
+    {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 2200 }}" alt="{{ section.settings.image.alt | escape }}" width="2200" height="1200" fetchpriority="high">
+    {%- else -%}
+      {{ 'hero-apparel' | placeholder_svg_tag }}
+    {%- endif -%}
+  </div>
+  <div class="page-width hero__content">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    <h1>
+      {{ section.settings.heading_1 }}
+      {%- if section.settings.heading_2 != blank -%}<span class="accent">{{ section.settings.heading_2 }}</span>{%- endif -%}
+    </h1>
+    {%- if section.settings.subheading != blank -%}
+      <p class="hero__sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+    <div class="hero__actions">
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_url }}" class="btn btn--primary">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_label_2 != blank -%}
+        <a href="{{ section.settings.button_url_2 }}" class="btn btn--outline">{{ section.settings.button_label_2 }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{%- if section.settings.show_ticker -%}
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>{{ section.settings.ticker_text }}</span>
+      <span>{{ section.settings.ticker_text }}</span>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "SMALL-BATCH \u2022 SMOKED \u2022 PROTEIN-PACKED" },
+    { "type": "text", "id": "heading_1", "label": "Heading line 1", "default": "FUEL THE" },
+    { "type": "text", "id": "heading_2", "label": "Heading accent line", "default": "GRIND." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Hand-cut beef, real spices, slow-smoked in small batches. Four bold flavors built for the hungry." },
+    { "type": "text", "id": "button_label", "label": "Primary button label", "default": "Shop the flavors" },
+    { "type": "url", "id": "button_url", "label": "Primary button link" },
+    { "type": "text", "id": "button_label_2", "label": "Secondary button label", "default": "Our story" },
+    { "type": "url", "id": "button_url_2", "label": "Secondary button link" },
+    { "type": "header", "content": "Ticker strip" },
+    { "type": "checkbox", "id": "show_ticker", "label": "Show ticker strip", "default": true },
+    { "type": "text", "id": "ticker_text", "label": "Ticker text", "default": "NO PRESERVATIVES \u00b7 HIGH PROTEIN \u00b7 GLUTEN FREE \u00b7 SLOW SMOKED \u00b7 MADE IN THE USA \u00b7" }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

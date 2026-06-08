@@ -1,0 +1,63 @@
+<section class="section section--tight">
+  <div class="page-width">
+    <div class="value-props">
+      {%- for block in section.blocks -%}
+        <div class="value-prop" {{ block.shopify_attributes }}>
+          <div class="value-prop__icon">
+            {%- case block.settings.icon -%}
+              {%- when 'protein' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6.5 6.5a4 4 0 0 1 0 11"/><path d="M17.5 17.5a4 4 0 0 1 0-11"/><path d="M6.5 6.5 17.5 17.5"/><path d="M17.5 6.5 6.5 17.5"/></svg>
+              {%- when 'smoke' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 4c0 2 2 2 2 4s-2 2-2 4 2 2 2 4"/><path d="M15 4c0 2 2 2 2 4s-2 2-2 4 2 2 2 4"/></svg>
+              {%- when 'leaf' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 4 13c0-5 4-9 16-9 0 9-4 13-9 13Z"/><path d="M11 20c0-4 1-7 5-10"/></svg>
+              {%- when 'truck' -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 4h12v12H1z"/><path d="M13 8h5l3 3v5h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+              {%- else -%}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>
+            {%- endcase -%}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Value props",
+  "blocks": [
+    {
+      "type": "prop",
+      "name": "Value prop",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "Icon", "default": "protein",
+          "options": [
+            { "value": "protein", "label": "Protein" },
+            { "value": "smoke", "label": "Smoke" },
+            { "value": "leaf", "label": "Leaf / natural" },
+            { "value": "truck", "label": "Shipping" },
+            { "value": "check", "label": "Check" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "High Protein" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "11g of protein per serving to power your day." }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Value props",
+      "blocks": [
+        { "type": "prop", "settings": { "icon": "protein", "title": "High Protein", "text": "11g of protein per serving to fuel the grind." } },
+        { "type": "prop", "settings": { "icon": "smoke", "title": "Slow Smoked", "text": "Real hardwood smoke, never liquid shortcuts." } },
+        { "type": "prop", "settings": { "icon": "leaf", "title": "Clean Ingredients", "text": "No preservatives, no nitrates, no nonsense." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

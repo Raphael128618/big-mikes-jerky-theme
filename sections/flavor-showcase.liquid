@@ -1,0 +1,57 @@
+<section class="section">
+  <div class="page-width">
+    <div class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}<p>{{ section.settings.subheading }}</p>{%- endif -%}
+    </div>
+
+    <div class="flavors">
+      {%- for block in section.blocks -%}
+        {%- assign target = block.settings.link | default: routes.all_products_collection_url -%}
+        <a href="{{ target }}" class="flavor-card" {{ block.shopify_attributes }}
+           {% if block.settings.image != blank %}style="--card-img: url('{{ block.settings.image | image_url: width: 800 }}')"{% endif %}>
+          {%- if block.settings.heat != blank -%}<span class="flavor-card__heat">{{ block.settings.heat }}</span>{%- endif -%}
+          <h3 class="flavor-card__name">{{ block.settings.name }}</h3>
+          <p class="flavor-card__desc">{{ block.settings.description }}</p>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Flavor showcase",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FOUR WAYS TO GET BOLD" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pick your flavor" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "From sweet heat to straight-up smoke. There's no wrong answer." }
+  ],
+  "blocks": [
+    {
+      "type": "flavor",
+      "name": "Flavor",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "name", "label": "Flavor name", "default": "Original" },
+        { "type": "text", "id": "heat", "label": "Heat / tag", "default": "MILD" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "The classic. Smoky, savory, perfectly chewy." },
+        { "type": "url", "id": "link", "label": "Link to product" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Flavor showcase",
+      "blocks": [
+        { "type": "flavor", "settings": { "name": "Original", "heat": "MILD", "description": "The classic. Smoky, savory, perfectly chewy." } },
+        { "type": "flavor", "settings": { "name": "Teriyaki", "heat": "SWEET", "description": "Sweet, sticky, soy-glazed and addictive." } },
+        { "type": "flavor", "settings": { "name": "Black Pepper", "heat": "BOLD", "description": "Cracked pepper and a peppery bite all over." } },
+        { "type": "flavor", "settings": { "name": "Habanero Heat", "heat": "HOT \ud83d\udd25", "description": "For the brave. Real habanero, real burn." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

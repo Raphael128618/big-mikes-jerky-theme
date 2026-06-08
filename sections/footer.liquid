@@ -1,0 +1,63 @@
+<footer class="footer">
+  <div class="page-width">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="footer__brand-name">
+          {{ section.settings.brand_text_1 }}<span class="accent">{{ section.settings.brand_text_2 }}</span>
+        </div>
+        <p class="text-muted">{{ section.settings.tagline }}</p>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'menu_column' -%}
+          <div class="footer__col" {{ block.shopify_attributes }}>
+            <h4>{{ block.settings.heading }}</h4>
+            {%- if block.settings.menu != blank -%}
+              {%- for link in block.settings.menu.links -%}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+      <span>{{ section.settings.credit }}</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "brand_text_1", "label": "Brand text", "default": "BIG MIKE'S" },
+    { "type": "text", "id": "brand_text_2", "label": "Brand accent text", "default": " JERKY" },
+    { "type": "textarea", "id": "tagline", "label": "Tagline", "default": "Small-batch beef jerky, smoked low and slow. Big flavor, no shortcuts." },
+    { "type": "text", "id": "credit", "label": "Bottom-right note", "default": "Smoked, not joked." }
+  ],
+  "blocks": [
+    {
+      "type": "menu_column",
+      "name": "Menu column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "menu_column" },
+        { "type": "menu_column" },
+        { "type": "menu_column" }
+      ]
+    }
+  ]
+}
+{% endschema %}

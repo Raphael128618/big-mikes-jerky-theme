@@ -1,0 +1,52 @@
+<section class="section">
+  <div class="page-width">
+    <div class="section-head">
+      {%- if section.settings.eyebrow != blank -%}<span class="eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.subheading != blank -%}<p>{{ section.settings.subheading }}</p>{%- endif -%}
+    </div>
+
+    {%- assign collection = collections[section.settings.collection] -%}
+    {%- if collection != blank and collection.products_count > 0 -%}
+      <div class="product-grid">
+        {%- for product in collection.products limit: section.settings.products_limit -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.show_view_all -%}
+        <div class="center" style="margin-top:42px">
+          <a href="{{ collection.url }}" class="btn btn--outline">View all</a>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="product-grid">
+        {%- for i in (1..4) -%}
+          <article class="card">
+            <div class="card__media">{{ 'product-1' | placeholder_svg_tag }}</div>
+            <div class="card__body">
+              <h3 class="card__title">Example Jerky</h3>
+              <div class="card__price"><span>$12.00</span></div>
+              <span class="btn btn--primary btn--block">Add to cart</span>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+      <p class="text-muted center" style="margin-top:24px">Connect a collection in the theme editor to show real products.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured products",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FAN FAVORITES" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Best sellers" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "The bags that fly off the shelf." },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_limit", "min": 2, "max": 12, "step": 1, "label": "Products to show", "default": 4 },
+    { "type": "checkbox", "id": "show_view_all", "label": "Show \u201cView all\u201d button", "default": true }
+  ],
+  "presets": [{ "name": "Featured products" }]
+}
+{% endschema %}

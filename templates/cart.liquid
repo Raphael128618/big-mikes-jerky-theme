@@ -1,0 +1,59 @@
+<section class="section">
+  <div class="page-width">
+    <div class="section-head">
+      <span class="eyebrow">Your order</span>
+      <h1>{{ 'cart.general.title' | t }}</h1>
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+        {%- for item in cart.items -%}
+          <div class="cart__line">
+            <a href="{{ item.url }}">
+              {%- if item.image -%}
+                <img src="{{ item.image | image_url: width: 184 }}" alt="{{ item.title | escape }}" width="92" height="92">
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag }}
+              {%- endif -%}
+            </a>
+            <div>
+              <a href="{{ item.url }}" class="cart__line-title">{{ item.product.title }}</a>
+              {%- unless item.variant.title contains 'Default' -%}
+                <div class="text-muted">{{ item.variant.title }}</div>
+              {%- endunless -%}
+              <div class="text-muted">{{ item.final_price | money }} each</div>
+            </div>
+            <div class="qty" data-qty>
+              <button type="button" data-qty-step="-1" aria-label="Decrease">&minus;</button>
+              <input type="number" name="updates[]" value="{{ item.quantity }}" min="0"
+                     data-line="{{ forloop.index }}" aria-label="Quantity"
+                     onchange="this.form.submit()">
+              <button type="button" data-qty-step="1" aria-label="Increase">+</button>
+            </div>
+            <div>
+              <div style="font-family:var(--font-heading);font-size:1.1rem">{{ item.final_line_price | money }}</div>
+              <a href="{{ item.url_to_remove }}" class="text-muted" style="font-size:0.82rem">{{ 'cart.general.remove' | t }}</a>
+            </div>
+          </div>
+        {%- endfor -%}
+
+        <div class="cart__foot">
+          <div>
+            <div class="text-muted">{{ 'cart.general.subtotal' | t }}</div>
+            <div class="cart__subtotal">{{ cart.total_price | money }}</div>
+            <div class="text-muted" style="font-size:0.82rem;margin-top:6px">{{ 'cart.general.taxes_note' | t }}</div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <a href="{{ routes.all_products_collection_url }}" class="btn btn--outline">{{ 'cart.general.continue' | t }}</a>
+            <button type="submit" name="checkout" class="btn btn--primary">{{ 'cart.general.checkout' | t }}</button>
+          </div>
+        </div>
+      </form>
+    {%- else -%}
+      <div class="cart__empty">
+        <h2>{{ 'cart.general.empty' | t }}</h2>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--primary" style="margin-top:18px">{{ 'cart.general.continue' | t }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
